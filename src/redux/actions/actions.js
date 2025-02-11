@@ -1,28 +1,31 @@
-import { types } from "../types/types";
+import { types } from '../types/types'
 
-export function changeTitleAction () {
-    return {
-        type: types.CHANGE_TITLE
+export function asyncFunctionAction() {
+    return function () {
+        setTimeout(() => {
+            alert('hello')
+        }, 2000)
     }
 }
 
-export function withParamsAction(title) {
-    return {
-        type: types.WITH_PARAMS,
-        payload: title
+export function fetchUsersAction() {
+    return async function () {
+        const response = await fetch('https://jsonplaceholder.typicode.com/users')
+        const data = await response.json()
     }
 }
 
-export function addUserAction(input) {
+export function catsAction(cats) {
     return {
-        type: types.FROM_INPUT,
-        payload: input
+        type: types.GET_CATS,
+        payload: cats
     }
 }
 
-export function addTaskAction(title, description, completed) {
-    return {
-        type: types.ADD_TASK,
-        payload: {title, description, completed }
+export function fetchCats() {
+    return async function (dispatch) {
+        const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=100')
+        const data = await response.json()
+        dispatch(catsAction(data))
     }
 }

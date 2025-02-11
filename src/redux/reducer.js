@@ -1,10 +1,6 @@
 import { combineReducers } from "redux"
-import contactReducer from "./reducers/contactReducer"
-import mainReducer from "./reducers/mainReducer"
-import taskReducer from "./reducers/taskReducer"
+import catsReducer from "./reducers/catsReducer"
 
 export const rootReducer = combineReducers({
-    contactReducer,
-    mainReducer,
-    taskReducer
+    catsReducer 
 })
